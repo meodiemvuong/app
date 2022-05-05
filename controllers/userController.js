@@ -57,7 +57,7 @@ exports.getUserDetail = async(req, res, next) => {
         })
     }
     let decodedData = {}
-    jwt.verify(token, 'WFFWf15115U842UGUBWF81EE858UYBY51BGBJ5E51Q', (err, decoded)=>{
+    jwt.verify(token, process.env.SECRET_KEY, (err, decoded)=>{
         if(err){
             console.log(err)
             return res.json({

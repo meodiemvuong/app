@@ -14,9 +14,10 @@ app.use(fileUpload())
 
 const user = require('./routers/userRoute')
 const product = require('./routers/productRoute')
-
+const cart = require('./routers/cartRoute')
 
 app.use('', user)
 app.use('', product)
+app.use('', cart)
 
 module.exports = app;

@@ -44,38 +44,13 @@ exports.loginUser = async (req, res, next) => {
 exports.logoutUser = async (req, res, next)=>{
     res.cookie('token', null)
     res.json({
-        success: true,
         message: 'Longged Out'
     })
 }
 
 exports.getUserDetail = async(req, res, next) => {
-    const { token } = req.cookies;
-    if (!token) {
-        return res.json({
-            message: "Please login"
-        })
-    }
-    let decodedData = {}
-    jwt.verify(token, process.env.SECRET_KEY, (err, decoded)=>{
-        if(err){
-            console.log(err)
-            return res.json({
-                message: "Please login"
-            })
-        }
-        decodedData = decoded
-    });
-    const user = await User.findById(decodedData.id);
-    
-    if(user==undefined){
-        res.json({
-            error: 'Dont have user'
-        })
-        return Error()
-    }
+    const user = await User.findById(req.user._id)
     res.status(200).json({
-        success: true,
         user,
     })
 }

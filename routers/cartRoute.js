@@ -5,5 +5,5 @@ const { isAuthentication } = require('../utils/auth')
 const router = express.Router()
 
 router.route('/cart').get(isAuthentication, getCart)
-router.route('/cart/add').get(isAuthentication, addToCart)
+router.route('/cart/add').post(isAuthentication, addToCart)
 module.exports = router

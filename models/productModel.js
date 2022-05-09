@@ -46,6 +46,7 @@ const productSchema = new mongoose.Schema({
             },
             rating: {
                 type: Number,
+                enum: [1,2,3,4,5],
                 required: false
             },
             comment: {
@@ -53,12 +54,10 @@ const productSchema = new mongoose.Schema({
                 required: false
             }
         }
-    ],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+    ]
     
+}, {
+    timestamps: true
 })
 
 module.exports = mongoose.model('Product', productSchema)
